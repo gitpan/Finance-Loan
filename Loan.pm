@@ -24,7 +24,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 # Technique for new class borrowed from Effective Perl Programming by Hall / Schwartz pp 211
@@ -121,15 +121,11 @@ Returns the total amount of interest that needs to be paid on the loan.
 
 Returns the unpaid balance on the account after payment n, if no additional principle payment on the loan is received.
 
-=head2 EXPORT
-
-None by default.
-
-=head2 BUGS
+=head1 BUGS
 
 None known.
 
-=head2 DISCLAIMER
+=head1 DISCLAIMER
 
 Calculations are presumed to be reliable, but not guaranteed.  
 
@@ -137,12 +133,10 @@ Calculations are presumed to be reliable, but not guaranteed.
 
 Zachary Zebrowski zaz@mitre.org
 
-=head1 THANKS
-
-Chris In The UK : (see Goggle archives) for consistency checking.
-
 =head1 SEE ALSO
+
 Nickell, Daniel - Forecasting With Your Microcomputer, Tab Books (C) 1983.
+
 =cut
 
 
