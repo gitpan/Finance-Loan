@@ -1,6 +1,5 @@
 package Finance::Loan;
 
-require 5.005_62;
 use strict;
 use warnings;
 
@@ -24,7 +23,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 # Technique for new class borrowed from Effective Perl Programming by Hall / Schwartz pp 211
@@ -100,7 +99,7 @@ Finance::Loan - Calculates monthly payment, interest paid, and unpaid balance on
   my $loan = new Finance::Loan(principle=>1000,interest_rate=>.07,number_of_months=>36); # 7% interest rate 
   my $monthlyPayment = $loan->getMonthlyPayment();
   my $interestPaid=$loan->getInterestPaid();
-  my $balanceAfterPaymentN = $loan->balanceAfterPayementN(n);
+  my $balanceAfterPaymentN = $loan->getBalanceAfterPayementN(n);
 
 =head1 DESCRIPTION
 
@@ -117,7 +116,7 @@ Returns the monthly payment on the loan.
 
 Returns the total amount of interest that needs to be paid on the loan.
 
-=head2 $loan->balanceAfterPaymentN(n)
+=head2 $loan->getBalanceAfterPaymentN(n)
 
 Returns the unpaid balance on the account after payment n, if no additional principle payment on the loan is received.
 
