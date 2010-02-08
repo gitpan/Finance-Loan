@@ -7,13 +7,6 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use Finance::Loan ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	
 ) ] );
@@ -23,7 +16,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = '0.03';
+our $VERSION = '0.05';
 
 
 # Technique for new class borrowed from Effective Perl Programming by Hall / Schwartz pp 211
@@ -73,16 +66,12 @@ sub getInterestPaid{
   return($retval);
 }
 
-# Forecasting With Your Microcomputer pp198
-sub getBalanceAfterPaymentN{
+sub getDailyInterest{
   my $self = shift;
-  my $payment = shift;
-  # B = S * ((1-(1-r)^-x)/r)
-  my $S = getMonthlyPayment($self,2);
-  my $r = $self->{interest_rate}/12;
-  my $x = -($self->{number_of_months} - $payment);
-  my $almost_val = $S*((1-((1-$r)**($x)))/$r);
-  my $retval = sprintf("%0.2f",$almost_val);
+  my $P = $self->{principle};
+  my $i = $self->{interest_rate};
+  my $val = $P * $i / 365;
+  my $retval = sprintf("%0.2f",$val);
   return($retval);
 }
 
@@ -91,17 +80,22 @@ __END__
 
 =head1 NAME
 
-Finance::Loan - Calculates monthly payment, interest paid, and unpaid balance on a loan.
+Finance::Loan - Calculates monthly payment, interest paid, and simple interest on a loan.
 
 =head1 SYNOPSIS
 
   use Finance::Loan;
-  my $loan = new Finance::Loan(principle=>1000,interest_rate=>.07,number_of_months=>36); # 7% interest rate 
-  my $monthlyPayment = $loan->getMonthlyPayment();
-  my $interestPaid=$loan->getInterestPaid();
-  my $balanceAfterPaymentN = $loan->getBalanceAfterPayementN(n);
+  my $loan = new Finance::Loan(principle=>1000,interest_rate=>.07,number_of_months=>36); # 7% interest rate for 36 months.
+  my $monthlyPayment = $loan->getMonthlyPayment(); # 30.88
+  my $interestPaid=$loan->getInterestPaid(); # Total interest 111.58
+  my $simpleDailyInterest = $loan->getDailyInterest(); # 0.19
+
 
 =head1 DESCRIPTION
+
+=head2 Note: Try to use another module than this one for Finances.
+
+I thought there was no other modules when I wrote this module that dealt with calcualting loans.  Turns out, there are many.  Please consider using one of the other modules if you need to calculate something more complicated.
 
 =head2 new Finance::Loan(principle=>1000,interest_rate=>.07,number_of_months=>36)
 
@@ -119,6 +113,10 @@ Returns the total amount of interest that needs to be paid on the loan.
 =head2 $loan->getBalanceAfterPaymentN(n)
 
 Returns the unpaid balance on the account after payment n, if no additional principle payment on the loan is received.
+
+=head2 $loan->getDailyInterest();
+
+Returns the daily interest on the loan.
 
 =head1 BUGS
 

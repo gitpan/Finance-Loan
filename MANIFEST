@@ -1,5 +1,8 @@
 Changes
-Loan.pm
-MANIFEST
 Makefile.PL
-test.pl
+MANIFEST
+README
+t/Finance-Loan.t
+lib/Finance/Loan.pm
+example.pl
+META.yml                                 Module meta-data (added by MakeMaker)
