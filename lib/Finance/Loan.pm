@@ -16,7 +16,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 # Technique for new class borrowed from Effective Perl Programming by Hall / Schwartz pp 211
@@ -110,17 +110,13 @@ Returns the monthly payment on the loan.
 
 Returns the total amount of interest that needs to be paid on the loan.
 
-=head2 $loan->getBalanceAfterPaymentN(n)
-
-Returns the unpaid balance on the account after payment n, if no additional principle payment on the loan is received.
-
 =head2 $loan->getDailyInterest();
 
 Returns the daily interest on the loan.
 
 =head1 BUGS
 
-None known.
+* The function get payment after payment N was broken, so I removed the function.
 
 =head1 DISCLAIMER
 
@@ -128,7 +124,8 @@ Calculations are presumed to be reliable, but not guaranteed.
 
 =head1 AUTHOR
 
-Zachary Zebrowski zaz@mitre.org
+Zachary Zebrowski zakz@cpan.org 
+NOTE: Please include the word Finance in the subject of the message to beat the spam filter.
 
 =head1 SEE ALSO
 

@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:                Finance-Loan
-version:             0.05
-abstract:            Calculates monthly payment, interest paid, and unpaid balance on a loan.
+version:             0.06
+abstract:            Calculates monthly payment, interest paid, and simple interest on a loan.
 license:             ~
 author:              
     - Zachary Zebrowski <zaz@myhome.westell.com>
